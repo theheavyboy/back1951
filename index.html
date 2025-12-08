@@ -1551,6 +1551,400 @@
         min-height: 48px;
       }
     }
+
+    /* Camera Modal Styles */
+    .camera-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100000;
+      flex-direction: column;
+    }
+
+    .camera-modal.active {
+      display: flex;
+    }
+
+    .camera-container {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      height: 100%;
+      max-height: 480px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .camera-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .camera-canvas {
+      display: none;
+    }
+
+    /* Document Frame Overlay */
+    .document-frame-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .frame-passport {
+      width: 320px;
+      height: 240px;
+      border: 5px solid #10b981;
+      border-radius: 12px;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .frame-id-card {
+      width: 340px;
+      height: 215px;
+      border: 5px solid #10b981;
+      border-radius: 12px;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .frame-drivers-license {
+      width: 340px;
+      height: 215px;
+      border: 5px solid #10b981;
+      border-radius: 12px;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .frame-corners {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .corner {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      border: 5px solid #10b981;
+    }
+
+    .corner.top-left {
+      top: -5px;
+      left: -5px;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 12px 0 0 0;
+    }
+
+    .corner.top-right {
+      top: -5px;
+      right: -5px;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 12px 0 0;
+    }
+
+    .corner.bottom-left {
+      bottom: -5px;
+      left: -5px;
+      border-right: none;
+      border-top: none;
+      border-radius: 0 0 0 12px;
+    }
+
+    .corner.bottom-right {
+      bottom: -5px;
+      right: -5px;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 12px 0;
+    }
+
+    .frame-guide-text {
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      background: rgba(16, 185, 129, 0.9);
+      padding: 10px 20px;
+      border-radius: 25px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+
+
+    .camera-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 20;
+    }
+
+    .camera-btn {
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .camera-btn:hover {
+      transform: scale(1.1);
+      background: #fff;
+    }
+
+    .camera-btn.capture {
+      width: 70px;
+      height: 70px;
+      background: #10b981;
+      border: 4px solid #fff;
+    }
+
+    .camera-btn.capture:hover {
+      background: #059669;
+    }
+
+    .camera-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: #1a1a1a;
+    }
+
+    .camera-btn.capture svg {
+      fill: #fff;
+    }
+
+    .camera-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .camera-close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .camera-close-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .camera-close-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .camera-container {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+      }
+
+      .frame-passport {
+        width: 80vw;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 4/3;
+      }
+
+      .frame-id-card,
+      .frame-drivers-license {
+        width: 85vw;
+        max-width: 340px;
+        height: auto;
+        aspect-ratio: 1.6/1;
+      }
+
+      .corner {
+        width: 25px;
+        height: 25px;
+        border-width: 4px;
+      }
+
+      .frame-guide-text {
+        font-size: 13px;
+        padding: 8px 16px;
+        bottom: -45px;
+      }
+
+      .camera-controls {
+        bottom: 30px;
+        gap: 15px;
+      }
+
+      .camera-btn {
+        width: 55px;
+        height: 55px;
+      }
+
+      .camera-btn.capture {
+        width: 65px;
+        height: 65px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .frame-passport {
+        width: 75vw;
+        max-width: 280px;
+      }
+
+      .frame-id-card,
+      .frame-drivers-license {
+        width: 80vw;
+        max-width: 320px;
+      }
+
+      .corner {
+        width: 20px;
+        height: 20px;
+        border-width: 3px;
+      }
+
+      .corner.top-left,
+      .corner.top-right {
+        top: -4px;
+      }
+
+      .corner.bottom-left,
+      .corner.bottom-right {
+        bottom: -4px;
+      }
+
+      .corner.top-left,
+      .corner.bottom-left {
+        left: -4px;
+      }
+
+      .corner.top-right,
+      .corner.bottom-right {
+        right: -4px;
+      }
+
+      .frame-guide-text {
+        font-size: 12px;
+        padding: 6px 14px;
+        bottom: -40px;
+      }
+
+      .camera-controls {
+        bottom: 25px;
+        gap: 12px;
+      }
+
+      .camera-btn {
+        width: 50px;
+        height: 50px;
+      }
+
+      .camera-btn.capture {
+        width: 60px;
+        height: 60px;
+      }
+
+      .camera-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .camera-header {
+        padding: 15px;
+      }
+
+      .camera-close-btn {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .frame-passport {
+        width: 70vw;
+      }
+
+      .frame-id-card,
+      .frame-drivers-license {
+        width: 75vw;
+      }
+
+      .corner {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* Landscape orientation for mobile */
+    @media (max-height: 600px) and (orientation: landscape) {
+      .frame-passport,
+      .frame-id-card,
+      .frame-drivers-license {
+        max-height: 50vh;
+      }
+
+      .frame-guide-text {
+        bottom: -35px;
+        font-size: 11px;
+        padding: 5px 12px;
+      }
+
+      .camera-controls {
+        bottom: 15px;
+      }
+
+      .camera-header {
+        padding: 10px 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1937,6 +2331,58 @@
           <input type="file" id="hiddenFileInput" accept="image/*" style="display: none;">
           <input type="file" id="hiddenCameraInput" accept="image/*" capture="environment" style="display: none;">
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camera Modal for Document Scanning -->
+  <div class="camera-modal" id="cameraModal">
+    <div class="camera-header">
+      <button class="camera-close-btn" id="cameraCloseBtn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="camera-container">
+      <video class="camera-video" id="cameraVideo" autoplay playsinline></video>
+      <canvas class="camera-canvas" id="cameraCanvas"></canvas>
+      
+      <!-- Document Frame Overlay -->
+      <div class="document-frame-overlay" id="documentFrame">
+        <div class="frame-id-card" id="frameShape">
+          <div class="frame-corners">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+          </div>
+          <div class="frame-guide-text" id="frameGuideText">Align document within frame</div>
+        </div>
+      </div>
+
+
+
+      <!-- Camera Controls -->
+      <div class="camera-controls">
+        <button class="camera-btn" id="switchCameraBtn" title="Switch Camera">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 5h-3.17L15 3H9L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+            <path d="M12 9c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/>
+            <path d="M16 2l2 2-2 2V2z" fill="#10b981"/>
+          </svg>
+        </button>
+        <button class="camera-btn capture" id="captureBtn" title="Capture Photo">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="camera-btn" id="flashBtn" title="Toggle Flash">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -2600,10 +3046,17 @@
         });
       }
 
-      // Use camera
+      // Use camera - Open camera modal for mobile scanning
       if (useCameraBtn) {
         useCameraBtn.addEventListener('click', function() {
-          hiddenCameraInput.click();
+          // Check if device supports camera API
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            hideUploadModal();
+            openCameraModal();
+          } else {
+            // Fallback to file input for devices without camera API support
+            hiddenCameraInput.click();
+          }
         });
       }
 
@@ -2664,6 +3117,261 @@
           }
         });
       }
+
+      // ========== Camera Modal Functionality ==========
+      const cameraModal = document.getElementById('cameraModal');
+      const cameraVideo = document.getElementById('cameraVideo');
+      const cameraCanvas = document.getElementById('cameraCanvas');
+      const cameraCloseBtn = document.getElementById('cameraCloseBtn');
+      const captureBtn = document.getElementById('captureBtn');
+      const switchCameraBtn = document.getElementById('switchCameraBtn');
+      const flashBtn = document.getElementById('flashBtn');
+      const documentFrame = document.getElementById('documentFrame');
+      const frameShape = document.getElementById('frameShape');
+      const frameGuideText = document.getElementById('frameGuideText');
+
+      let currentStream = null;
+      let currentFacingMode = 'environment'; // Start with back camera
+      let isFlashOn = false;
+
+      // Frame configurations based on document type
+      const frameConfigs = {
+        'passport': {
+          class: 'frame-passport',
+          text: 'Align passport within frame'
+        },
+        'drivers_license': {
+          class: 'frame-drivers-license',
+          text: 'Align driver\'s license within frame'
+        },
+        'national_id': {
+          class: 'frame-id-card',
+          text: 'Align ID card within frame'
+        }
+      };
+
+      // Open camera modal
+      async function openCameraModal() {
+        if (!cameraModal) return;
+        
+        // Set frame based on selected document type
+        if (selectedIdType && frameConfigs[selectedIdType]) {
+          const config = frameConfigs[selectedIdType];
+          frameShape.className = config.class;
+          if (frameGuideText) frameGuideText.textContent = config.text;
+        }
+
+        cameraModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Start camera
+        await startCamera();
+      }
+
+      // Close camera modal
+      function closeCameraModal() {
+        if (!cameraModal) return;
+        
+        cameraModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        stopCamera();
+      }
+
+      // Start camera
+      async function startCamera() {
+        try {
+          const constraints = {
+            video: {
+              facingMode: currentFacingMode,
+              width: { ideal: 1920 },
+              height: { ideal: 1080 }
+            }
+          };
+
+          currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+          
+          if (cameraVideo) {
+            cameraVideo.srcObject = currentStream;
+            
+            // Apply flash if enabled
+            const track = currentStream.getVideoTracks()[0];
+            const capabilities = track.getCapabilities();
+            if (isFlashOn && capabilities.torch) {
+              await track.applyConstraints({
+                advanced: [{ torch: true }]
+              });
+            }
+          }
+        } catch (error) {
+          console.error('Error accessing camera:', error);
+          alert('Unable to access camera. Please check permissions.');
+          closeCameraModal();
+        }
+      }
+
+      // Stop camera
+      function stopCamera() {
+        if (currentStream) {
+          currentStream.getTracks().forEach(track => track.stop());
+          currentStream = null;
+        }
+      }
+
+      // Switch camera (front/back)
+      async function switchCamera() {
+        currentFacingMode = currentFacingMode === 'environment' ? 'user' : 'environment';
+        stopCamera();
+        await startCamera();
+      }
+
+      // Toggle flash
+      async function toggleFlash() {
+        isFlashOn = !isFlashOn;
+        
+        if (currentStream) {
+          const track = currentStream.getVideoTracks()[0];
+          const capabilities = track.getCapabilities();
+          
+          if (capabilities.torch) {
+            try {
+              await track.applyConstraints({
+                advanced: [{ torch: isFlashOn }]
+              });
+              flashBtn.style.background = isFlashOn ? '#fbbf24' : 'rgba(255, 255, 255, 0.95)';
+            } catch (error) {
+              console.error('Flash not supported:', error);
+            }
+          } else {
+            alert('Flash not supported on this device');
+            isFlashOn = false;
+          }
+        }
+      }
+
+      // Simulate document detection
+      function startDocumentDetection() {
+        if (!isAutoScanMode) return;
+        
+        // Reset states
+        autoDetected = false;
+        if (frameShape) {
+          frameShape.classList.remove('detected');
+        }
+        const corners = document.querySelectorAll('.corner');
+        corners.forEach(corner => corner.classList.remove('detected'));
+        
+        // Simulate detection after 2.5-4 seconds
+        const detectionDelay = 2500 + Math.random() * 1500;
+        
+        detectionTimeout = setTimeout(() => {
+          if (!isAutoScanMode || autoDetected) return;
+          
+          // Document detected
+          autoDetected = true;
+          
+          // Update detection indicator
+          if (detectionIndicator) {
+            detectionIndicator.className = 'detection-indicator detected';
+          }
+          if (detectionText) {
+            detectionText.textContent = '✓ Document detected!';
+          }
+          
+          // Update frame appearance
+          if (frameShape) {
+            frameShape.classList.add('detected');
+          }
+          
+          // Update corners
+          corners.forEach(corner => corner.classList.add('detected'));
+          
+          // Stop scan line animation
+          if (scanLine) {
+            scanLine.classList.remove('active');
+          }
+          
+          // Start countdown
+          startAutoCapture();
+        }, detectionDelay);
+      }
+
+      // Auto capture countdown
+      function startAutoCapture() {
+        let countdown = 3;
+        
+        function updateCountdown() {
+          if (countdown > 0) {
+            if (captureCountdown) {
+              captureCountdown.textContent = countdown;
+              captureCountdown.style.display = 'block';
+            }
+            countdown--;
+            setTimeout(updateCountdown, 1000);
+          } else {
+            if (captureCountdown) {
+              captureCountdown.style.display = 'none';
+            }
+            capturePhoto();
+          }
+        }
+        
+        updateCountdown();
+      }
+
+      // Capture photo
+      function capturePhoto() {
+        if (!cameraVideo || !cameraCanvas) return;
+        
+        const context = cameraCanvas.getContext('2d');
+        cameraCanvas.width = cameraVideo.videoWidth;
+        cameraCanvas.height = cameraVideo.videoHeight;
+        
+        context.drawImage(cameraVideo, 0, 0);
+        
+        // Convert canvas to blob
+        cameraCanvas.toBlob((blob) => {
+          if (blob) {
+            const file = new File([blob], `document_${selectedIdType}_${Date.now()}.jpg`, {
+              type: 'image/jpeg'
+            });
+            
+            // Handle the captured file
+            handleFileSelection(file);
+            closeCameraModal();
+          }
+        }, 'image/jpeg', 0.95);
+      }
+
+      // Event Listeners
+      if (cameraCloseBtn) {
+        cameraCloseBtn.addEventListener('click', closeCameraModal);
+      }
+
+      if (captureBtn) {
+        captureBtn.addEventListener('click', capturePhoto);
+      }
+
+      if (switchCameraBtn) {
+        switchCameraBtn.addEventListener('click', switchCamera);
+      }
+
+      if (flashBtn) {
+        flashBtn.addEventListener('click', toggleFlash);
+      }
+
+      // Keyboard shortcuts for camera modal
+      document.addEventListener('keydown', function(e) {
+        if (cameraModal && cameraModal.classList.contains('active')) {
+          if (e.key === 'Escape') {
+            closeCameraModal();
+          } else if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            capturePhoto();
+          }
+        }
+      });
+
+      // ========== End Camera Modal Functionality ==========
 
       // Form validation
       if (emailPhoneInput) {
