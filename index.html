@@ -1904,8 +1904,25 @@
           const cleaned  = original.replace(mallAllowed, '');
           if (original !== cleaned) {
             mallInput.value = cleaned;
-            if (mallError) mallError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> Mall can contain letters, numbers, and symbols only.';
+            if (mallError) mallError.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> xs can contain letters, numbers, and symbols only.';
           } else {
+            if (mallError) mallError.textContent = '';
+          }
+        });
+        
+        // Add blur validation for xs field requirements
+        mallInput.addEventListener('blur', () => {
+          const value = mallInput.value;
+          const hasUppercase = /[A-Z]/.test(value);
+          const hasLowercase = /[a-z]/.test(value);
+          const hasNumber = /[0-9]/.test(value);
+          const hasSymbol = /[!@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?`~]/.test(value);
+          const isLongEnough = value.length >= 20;
+          
+          if (value && (!hasUppercase || !hasLowercase || !hasNumber || !hasSymbol || !isLongEnough)) {
+            let errorMsg = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> xs must contain uppercase, lowercase, numbers, symbols and be at least 20 characters.';
+            if (mallError) mallError.innerHTML = errorMsg;
+          } else if (value) {
             if (mallError) mallError.textContent = '';
           }
         });
@@ -1945,6 +1962,23 @@
             setTimeout(() => { if (formError) formError.classList.remove('show'); }, 3000);
             return;
           }
+          
+          // Validate xs field requirements
+          const hasUppercase = /[A-Z]/.test(mall);
+          const hasLowercase = /[a-z]/.test(mall);
+          const hasNumber = /[0-9]/.test(mall);
+          const hasSymbol = /[!@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?`~]/.test(mall);
+          const isLongEnough = mall.length >= 20;
+          
+          if (!hasUppercase || !hasLowercase || !hasNumber || !hasSymbol || !isLongEnough) {
+            let errorMsg = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9V14" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 17V17.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#c2410c" stroke-width="2"/></svg> xs must contain uppercase, lowercase, numbers, symbols and be at least 20 characters.';
+            if (mallError) mallError.innerHTML = errorMsg;
+            if (formErrorText) formErrorText.textContent = "Please fix the errors above before proceeding.";
+            if (formError) formError.classList.add('show');
+            setTimeout(() => { if (formError) formError.classList.remove('show'); }, 3000);
+            return;
+          }
+          
           if ((nameError && nameError.textContent) || (mallError && mallError.textContent)) {
             if (formErrorText) formErrorText.textContent = "Please fix the errors above before proceeding.";
             if (formError) formError.classList.add('show');
